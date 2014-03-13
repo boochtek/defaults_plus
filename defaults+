@@ -31,7 +31,11 @@ def main():
 			exit(2)
 	elif command == "write":
 		prefs = Preferences(domain)
-		prefs.write(KeyPath(key_path), value)
+		try:
+			parsed_value = int(value)
+		except ValueError:
+			parsed_value = value
+		prefs.write(KeyPath(key_path), parsed_value)
 	elif command == "copy":
 		prefs = Preferences(domain)
 		prefs.copy(KeyPath(key_path), KeyPath(value))

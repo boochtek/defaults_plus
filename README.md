@@ -7,25 +7,25 @@ This is a knock-off of the Mac OS X `defaults` program, but able to manipulate n
 Usage Examples
 --------------
 
-To get all the settings for the *Basic* profile in Terminal:
+To get all the settings for the **Basic** profile in Terminal:
 
 ~~~ shell
 defaults+ read com.apple.Terminal 'Window Settings.Basic'
 ~~~
 
-To add a setting to that profile:
+To add a setting to that profile (to disable the audible bell feature):
 
 ~~~ shell
-defaults+ write com.apple.Terminal 'Window Settings.Basic.Test' 'Craig was here!'
+defaults+ write com.apple.Terminal 'Window Settings.Basic.Bell' 0
 ~~~
 
 To read the setting you just wrote:
 
 ~~~ shell
-defaults+ read com.apple.Terminal 'Window Settings.Basic.Test'
+defaults+ read com.apple.Terminal 'Window Settings.Basic.Bell'
 ~~~
 
-To copy one profile to another in Terminal:
+To copy one Terminal profile to another:
 
 ~~~ shell
 defaults+ copy com.apple.Terminal 'Window Settings.Basic' 'Window Settings.Copy of Basic'
@@ -40,9 +40,11 @@ TODO
 * Add `delete` command.
 * Add `rename` command.
 * Add other types of items for `write`.
-  * int, bool, float, etc.
+  * data
+  * bool, float, etc.
   * array, dict
   * array-add, dict-add
+  * with and without flag explicitly specifying type
 * Add `read-type` command.
 * Require a flag to overwrite an array or hash with a single value.
 * Handle the case where an intermediate key doesn't exist.
