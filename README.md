@@ -51,7 +51,9 @@ Copyright
 Copyright (c) 2014 Craig Buchek  
 Copyright (c) 2014 BoochTek, LLC
 
-This software is licensed under the terms of the MIT License. See LICENSE for details.
+This software is licensed under the terms of the MIT License. See [LICENSE.txt] for details.
+
+[LICENSE.txt]: LICENSE.txt
 
 
 Contributing
