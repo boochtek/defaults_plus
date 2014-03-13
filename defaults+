@@ -32,6 +32,9 @@ def main():
 	elif command == "write":
 		prefs = Preferences(domain)
 		prefs.write(KeyPath(key_path), value)
+	elif command == "copy":
+		prefs = Preferences(domain)
+		prefs.copy(KeyPath(key_path), KeyPath(value))
 	else:
 		print("Don't know how to %s" % command)
 		exit(1)
@@ -50,6 +53,9 @@ class Preferences(object):
 		top[key_path.rest()] = value
 		CoreFoundation.CFPreferencesSetAppValue(key_path.first(), top, self.domain)
 		self.sync()
+
+	def copy(self, source_key_path, destination_key_path):
+		self.write(destination_key_path, self.read(source_key_path))
 
 	def top_dict(self, key_path):
 		return NestedDict(mutable_copy_of_dict(CoreFoundation.CFPreferencesCopyAppValue(key_path.first(), self.domain)))

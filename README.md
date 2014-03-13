@@ -25,11 +25,18 @@ To read the setting you just wrote:
 defaults+ read com.apple.Terminal 'Window Settings.Basic.Test'
 ~~~
 
+To copy one profile to another in Terminal:
+
+~~~ shell
+defaults+ copy com.apple.Terminal 'Window Settings.Basic' 'Window Settings.Copy of Basic'
+defaults+ write com.apple.Terminal 'Window Settings.Copy of Basic.name' 'Copy of Basic'
+~~~
+
+
 
 TODO
 ----
 
-* Add `copy` command.
 * Add `delete` command.
 * Add `rename` command.
 * Add other types of items for `write`.
