@@ -36,6 +36,10 @@ def main():
 		except ValueError:
 			parsed_value = value
 		prefs.write(KeyPath(key_path), parsed_value)
+	elif command == "delete":
+		prefs = Preferences(domain)
+		# Can't get delete to work, so just "clear" with an empty dict.
+		prefs.write(KeyPath(key_path), {})
 	elif command == "copy":
 		prefs = Preferences(domain)
 		prefs.copy(KeyPath(key_path), KeyPath(value))
