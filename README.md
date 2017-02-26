@@ -1,7 +1,19 @@
 defaults_plus
 =============
 
+NOTE: This is currently broken on macOS Sierra.
+
 This is a knock-off of the Mac OS X `defaults` program, but able to manipulate nested dicts.
+
+
+Prerequisites
+-------------
+
+You may need to install PyObjC:
+
+~~~ shell
+pip install -U pyobjc
+~~~
 
 
 Usage Examples
@@ -37,6 +49,7 @@ defaults+ write com.apple.Terminal 'Window Settings.Copy of Basic.name' 'Copy of
 TODO
 ----
 
+* Get it to work with macOS Sierra.
 * Add `delete` command.
 * Add `rename` command.
 * Add other types of items for `write`.
