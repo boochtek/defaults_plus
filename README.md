@@ -5,6 +5,9 @@ NOTE: This is currently broken on macOS Sierra.
 
 This is a knock-off of the Mac OS X `defaults` program, but able to manipulate nested dicts.
 
+Long-term, I'll likely abandon this project in favor of an Ansible plugin,
+something like https://github.com/ansible/ansible-modules-extras/pull/2392.
+
 
 Prerequisites
 -------------
