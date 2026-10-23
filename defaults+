@@ -94,7 +94,7 @@ class NestedDict(dict):
 	"""
 	def __getitem__(self, keys):
 		# If `keys` is a collection (other than string), convert it to a tuple.
-		if hasattr(keys, '__iter__'):
+		if isinstance(keys, (list, tuple)):
 			keys = tuple(keys)
 			node = self
 			for key in keys:
@@ -108,7 +108,7 @@ class NestedDict(dict):
 
 	def __setitem__(self, keys, value):
 		# If `keys` is a collection (other than string).
-		if hasattr(keys, '__iter__'):
+		if isinstance(keys, (list, tuple)):
 			try:
 				node = self
 				for key in keys[:-1]:
