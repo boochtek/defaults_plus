@@ -1,8 +1,6 @@
 defaults_plus
 =============
 
-NOTE: This is currently broken on macOS Sierra.
-
 This is a knock-off of the Mac OS X `defaults` program, but able to manipulate nested dicts.
 
 Long-term, I'll likely abandon this project in favor of an Ansible plugin,
@@ -12,10 +10,19 @@ something like https://github.com/ansible/ansible-modules-extras/pull/2392.
 Prerequisites
 -------------
 
-You may need to install PyObjC:
+It needs Python 3 and PyObjC (`pyobjc-framework-Cocoa`, for `CoreFoundation`).
+Homebrew's Python won't let `pip` install packages into it, so the easiest way
+is to run it with [uv](https://docs.astral.sh/uv/), which provides both:
 
 ~~~ shell
-pip install -U pyobjc
+uv run --with pyobjc-framework-Cocoa ./defaults+ read com.apple.Terminal 'Window Settings.Basic'
+~~~
+
+Or add the dependency to the script itself, so `uv` runs it directly:
+
+~~~ shell
+uv add --script defaults+ pyobjc-framework-Cocoa
+sed -i '' '1s|.*|#!/usr/bin/env -S uv run --quiet --script|' defaults+
 ~~~
 
 
@@ -52,7 +59,6 @@ defaults+ write com.apple.Terminal 'Window Settings.Copy of Basic.name' 'Copy of
 TODO
 ----
 
-* Get it to work with macOS Sierra.
 * Add `delete` command.
 * Add `rename` command.
 * Add other types of items for `write`.
@@ -63,7 +69,7 @@ TODO
   * with and without flag explicitly specifying type
 * Add `read-type` command.
 * Require a flag to overwrite an array or hash with a single value.
-* Handle the case where an intermediate key doesn't exist.
+* Handle a top-level key that doesn't exist, or isn't a dict (it crashes now).
 * Accept `-app Terminal` syntax for the domain.
 * Accept the same `<value_rep>` syntax that `defaults` does.
 * Allow specifying the key path separator.
